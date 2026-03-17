@@ -19,6 +19,7 @@
   },
   "name":"Submersos",
   "resources":[
+    {"id":{"name":"oScorpio","path":"objects/oScorpio/oScorpio.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"sScorpio","path":"sprites/sScorpio/sScorpio.yy",},},
   ],
