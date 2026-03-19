@@ -1,12 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"oScorpio",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"oFloor",
+  "eventList":[],
   "managed":true,
-  "name":"oScorpio",
+  "name":"oFloor",
   "overriddenProperties":[],
   "parent":{
     "name":"Submersos",
@@ -31,9 +28,12 @@
   "resourceVersion":"2.0",
   "solid":true,
   "spriteId":{
-    "name":"sScorpio_Parado",
-    "path":"sprites/sScorpio_Parado/sScorpio_Parado.yy",
+    "name":"sFloor",
+    "path":"sprites/sFloor/sFloor.yy",
   },
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"sFloor",
+    "path":"sprites/sFloor/sFloor.yy",
+  },
   "visible":true,
 }
