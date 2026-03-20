@@ -21,9 +21,11 @@
   },
   "name":"Submersos",
   "resources":[
+    {"id":{"name":"oAreia","path":"objects/oAreia/oAreia.yy",},},
     {"id":{"name":"oFloor","path":"objects/oFloor/oFloor.yy",},},
     {"id":{"name":"oScorpio","path":"objects/oScorpio/oScorpio.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"sAreia","path":"sprites/sAreia/sAreia.yy",},},
     {"id":{"name":"sFloor","path":"sprites/sFloor/sFloor.yy",},},
     {"id":{"name":"sScorpio_Caminhando","path":"sprites/sScorpio_Caminhando/sScorpio_Caminhando.yy",},},
     {"id":{"name":"sScorpio_Parado","path":"sprites/sScorpio_Parado/sScorpio_Parado.yy",},},

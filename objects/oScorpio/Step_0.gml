@@ -18,7 +18,7 @@ vsp += grav;
 
 
 // Verifica colisão com o chão (substitua oFloor pelo seu objeto de chão)
-if (place_meeting(x, y + 1, oFloor)) {
+if (place_meeting(x, y + 1, oAreia)) {
     
     // Se estiver no chão, permite pular
     if (keyboard_check_pressed(ord("W"))) {
@@ -28,11 +28,11 @@ if (place_meeting(x, y + 1, oFloor)) {
 
 
 // Aplica movimento vertical com colisão
-if (!place_meeting(x, y + vsp, oFloor)) {
+if (!place_meeting(x, y + vsp, oAreia)) {
     y += vsp;
 } else {
     // Ajusta posição ao colidir
-    while (!place_meeting(x, y + sign(vsp), oFloor)) {
+    while (!place_meeting(x, y + sign(vsp), oAreia)) {
         y += sign(vsp);
     }
     vsp = 0;
