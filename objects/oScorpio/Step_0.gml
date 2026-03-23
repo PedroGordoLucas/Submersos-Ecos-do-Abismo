@@ -12,26 +12,29 @@ if (keyboard_check(ord("A"))) {
 // Aplica movimento horizontal
 x += mov * spd;
 
+// INVERTE O SPRITE 
+if (mov != 0) {
+    image_xscale = sign(mov);
+}
+
 
 // Gravidade
 vsp += grav;
 
 
-// Verifica colisão com o chão (substitua oFloor pelo seu objeto de chão)
+// Verifica colisão com o chão
 if (place_meeting(x, y + 1, oAreia)) {
     
-    // Se estiver no chão, permite pular
     if (keyboard_check_pressed(ord("W"))) {
         vsp = jump_force;
     }
 }
 
 
-// Aplica movimento vertical com colisão
+// Movimento vertical com colisão
 if (!place_meeting(x, y + vsp, oAreia)) {
     y += vsp;
 } else {
-    // Ajusta posição ao colidir
     while (!place_meeting(x, y + sign(vsp), oAreia)) {
         y += sign(vsp);
     }
