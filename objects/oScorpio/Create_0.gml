@@ -9,3 +9,10 @@ energia_max = 100;
 
 // Taxa de consumo
 energia_decay = 0.4;
+
+dash_timer_d = 0;
+dash_timer_a = 0;
+dash_delay = 15;
+
+rodando = false;
+dir_dash = 0;
