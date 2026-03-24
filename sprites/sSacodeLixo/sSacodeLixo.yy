@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Submersos",
-    "path":"Submersos.yyp",
+    "name":"sItens",
+    "path":"folders/sItens.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

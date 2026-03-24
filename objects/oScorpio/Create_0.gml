@@ -8,4 +8,4 @@ energia = 100;
 energia_max = 100;
 
 // Taxa de consumo
-energia_decay = 0.4;
+energia_decay = 0.3;

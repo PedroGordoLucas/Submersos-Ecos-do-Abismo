@@ -32,8 +32,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Submersos",
-    "path":"Submersos.yyp",
+    "name":"sScorpio",
+    "path":"folders/sScorpio.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

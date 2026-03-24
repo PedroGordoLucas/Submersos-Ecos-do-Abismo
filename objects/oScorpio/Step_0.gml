@@ -12,7 +12,9 @@ if (keyboard_check(ord("A"))) {
 
 // Colisão horizontal
 if (!place_meeting(x + mov * spd, y, oAreia) && 
-    !place_meeting(x + mov * spd, y, oRocks1)) {
+    !place_meeting(x + mov * spd, y, oRocks1)&&
+	!place_meeting(x + mov * spd, y, oRocks2)&&
+	!place_meeting(x + mov * spd, y, oRocks3)) {
     
     x += mov * spd;
     
