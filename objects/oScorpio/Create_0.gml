@@ -1,11 +1,11 @@
-// Velocidade horizontal
 spd = 4;
-
-// Força do pulo
+vsp = 0;
+grav = 0.5;
 jump_force = -10;
 
-// Gravidade
-grav = 0.5;
+// Sistema de energia
+energia = 100;
+energia_max = 100;
 
-// Velocidade vertical
-vsp = 0;
+// Taxa de consumo
+energia_decay = 0.4;

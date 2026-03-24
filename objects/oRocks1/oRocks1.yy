@@ -1,13 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"oScorpio",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":64,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"oRocks1",
+  "eventList":[],
   "managed":true,
-  "name":"oScorpio",
+  "name":"oRocks1",
   "overriddenProperties":[],
   "parent":{
     "name":"Submersos",
@@ -32,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":true,
   "spriteId":{
-    "name":"sScorpio_Caminhando",
-    "path":"sprites/sScorpio_Caminhando/sScorpio_Caminhando.yy",
+    "name":"sRocks1",
+    "path":"sprites/sRocks1/sRocks1.yy",
   },
   "spriteMaskId":null,
   "visible":true,

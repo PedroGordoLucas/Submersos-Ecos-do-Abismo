@@ -1,0 +1,1 @@
+draw_text(20, 20, "Energia: " + string(floor(energia)));

@@ -1,9 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"oAreia",
+  "%Name":"oBateria",
   "eventList":[],
   "managed":true,
-  "name":"oAreia",
+  "name":"oBateria",
   "overriddenProperties":[],
   "parent":{
     "name":"Submersos",
@@ -26,10 +26,10 @@
   "properties":[],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
-  "solid":true,
+  "solid":false,
   "spriteId":{
-    "name":"sAreia2",
-    "path":"sprites/sAreia2/sAreia2.yy",
+    "name":"sBateria",
+    "path":"sprites/sBateria/sBateria.yy",
   },
   "spriteMaskId":null,
   "visible":true,
