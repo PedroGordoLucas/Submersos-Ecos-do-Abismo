@@ -7,14 +7,13 @@ if (keyboard_check(ord("D"))) {
 
 if (keyboard_check(ord("A"))) {
     mov = -1;
+	
 }
 
 
 // Colisão horizontal
 if (!place_meeting(x + mov * spd, y, oAreia) && 
-    !place_meeting(x + mov * spd, y, oRocks1)&&
-	!place_meeting(x + mov * spd, y, oRocks2)&&
-	!place_meeting(x + mov * spd, y, oRocks3)) {
+    !place_meeting(x + mov * spd, y, oRocks1)) {
     
     x += mov * spd;
     
@@ -26,11 +25,11 @@ if (!place_meeting(x + mov * spd, y, oAreia) &&
 }
 
 
+
 // Inverte sprite
 if (mov != 0) {
     image_xscale = sign(mov);
 }
-
 
 // Gravidade
 vsp += grav;
