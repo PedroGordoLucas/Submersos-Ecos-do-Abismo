@@ -91,3 +91,23 @@ if (energia <= 0) {
 } else {
     spd = 4;
 }
+
+// Coleta de itens (somem ao encostar)
+
+// Latinha
+var latinha = instance_place(x, y, oLatinha);
+if (latinha != noone) {
+    instance_destroy(latinha);
+}
+
+// Saco de lixo
+var lixo = instance_place(x, y, oSacodeLixo);
+if (lixo != noone) {
+    instance_destroy(lixo);
+}
+
+// Banana
+var banana = instance_place(x, y, oBanana);
+if (banana != noone) {
+    instance_destroy(banana);
+}
