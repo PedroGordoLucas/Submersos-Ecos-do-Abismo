@@ -28,6 +28,7 @@
     {"id":{"name":"oBateria","path":"objects/oBateria/oBateria.yy",},},
     {"id":{"name":"oCamera","path":"objects/oCamera/oCamera.yy",},},
     {"id":{"name":"oFloor","path":"objects/oFloor/oFloor.yy",},},
+    {"id":{"name":"oHud","path":"objects/oHud/oHud.yy",},},
     {"id":{"name":"oLatinha","path":"objects/oLatinha/oLatinha.yy",},},
     {"id":{"name":"oRocks1","path":"objects/oRocks1/oRocks1.yy",},},
     {"id":{"name":"oRocks2","path":"objects/oRocks2/oRocks2.yy",},},
