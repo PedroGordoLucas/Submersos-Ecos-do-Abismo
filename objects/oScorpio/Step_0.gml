@@ -4,23 +4,19 @@
 
 // DOUBLE TAP DIREITA (D)
 if (keyboard_check_pressed(ord("D"))) {
-    
     if (dash_timer_d > 0) {
         rodando = true;
         dir_dash = 1;
     }
-    
     dash_timer_d = dash_delay;
 }
 
 // DOUBLE TAP ESQUERDA (A)
 if (keyboard_check_pressed(ord("A"))) {
-    
     if (dash_timer_a > 0) {
         rodando = true;
         dir_dash = -1;
     }
-    
     dash_timer_a = dash_delay;
 }
 
@@ -31,7 +27,6 @@ if (dash_timer_a > 0) dash_timer_a--;
 // Para de rodar ao soltar tecla
 if ((dir_dash == 1 && !keyboard_check(ord("D"))) ||
     (dir_dash == -1 && !keyboard_check(ord("A")))) {
-    
     rodando = false;
 }
 
@@ -44,14 +39,9 @@ var mov = 0;
 
 if (rodando) {
     mov = dir_dash;
-}
-else {
-    if (keyboard_check(ord("D"))) {
-        mov = 1;
-    }
-    if (keyboard_check(ord("A"))) {
-        mov = -1;
-    }
+} else {
+    if (keyboard_check(ord("D"))) mov = 1;
+    if (keyboard_check(ord("A"))) mov = -1;
 }
 
 
@@ -96,7 +86,6 @@ if (!place_meeting(x + mov * spd, y, oAreia) &&
     }
 }
 
-
 // Inverte sprite
 if (mov != 0) {
     image_xscale = sign(mov);
@@ -108,15 +97,14 @@ if (mov != 0) {
 // =======================
 
 vsp += grav;
-
-if (vsp > 10) vsp = 10;
+vsp = clamp(vsp, -100, 10);
 
 
 // =======================
 // 🦘 PULO
 // =======================
 
-if (place_meeting(x, y + 2, oAreia) || place_meeting(x, y + 2, oRocks1)) {
+if (no_chao) {
     if (keyboard_check_pressed(ord("W"))) {
         vsp = jump_force;
     }
@@ -145,8 +133,8 @@ else {
 // 🔋 SISTEMA DE ENERGIA
 // =======================
 
-var bat = instance_place(x, y, oBateria);
 var pegou_bateria = false;
+var bat = instance_place(x, y, oBateria);
 
 if (bat != noone) {
     energia = energia_max;
@@ -154,10 +142,8 @@ if (bat != noone) {
     instance_destroy(bat);
 }
 
-if (!pegou_bateria) {
-    if (mov != 0) {
-        energia -= energia_decay;
-    }
+if (!pegou_bateria && mov != 0) {
+    energia -= energia_decay;
 }
 
 energia = clamp(energia, 0, energia_max);
@@ -170,12 +156,11 @@ energia = clamp(energia, 0, energia_max);
 if (energia <= 0) {
     spd = 2;
 }
+else if (rodando) {
+    spd = 10;
+}
 else {
-    if (rodando) {
-        spd = 10;
-    } else {
-        spd = 6;
-    }
+    spd = 6;
 }
 
 
@@ -183,17 +168,26 @@ else {
 // 🗑️ COLETA DE ITENS
 // =======================
 
-var latinha = instance_place(x, y, oLatinha);
-if (latinha != noone) {
-    instance_destroy(latinha);
-}
+var item;
 
-var lixo = instance_place(x, y, oSacodeLixo);
-if (lixo != noone) {
-    instance_destroy(lixo);
-}
+// Latinha
+item = instance_place(x, y, oLatinha);
+if (item != noone) instance_destroy(item);
 
-var banana = instance_place(x, y, oBanana);
-if (banana != noone) {
-    instance_destroy(banana);
+// Lixo
+item = instance_place(x, y, oSacodeLixo);
+if (item != noone) instance_destroy(item);
+
+// Banana
+item = instance_place(x, y, oBanana);
+if (item != noone) instance_destroy(item);
+
+
+// ==================
+// 💀 MORTE
+// ==================
+
+if (estrutura.esta_morto()) {
+    show_message("Você morreu!");
+    instance_destroy();
 }
