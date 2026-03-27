@@ -4,14 +4,25 @@ grav = 0.5;
 jump_force = -10;
 
 // ======================
+// 🔄 SISTEMA DE ESTADOS
+// ======================
+ESTADO_NORMAL = 0;
+ESTADO_TRANSFORMANDO = 1;
+ESTADO_VEICULO = 2;
+
+estado = ESTADO_NORMAL;
+transformando = false;
+
+// ======================
 // SISTEMA DE ENERGIA
 // ======================
 energia = 100;
 energia_max = 100;
-
-// Taxa de consumo
 energia_decay = 0.4;
 
+// ======================
+// DASH
+// ======================
 dash_timer_d = 0;
 dash_timer_a = 0;
 dash_delay = 15;
@@ -20,7 +31,7 @@ rodando = false;
 dir_dash = 0;
 
 // ======================
-// ESTRUTURA (CORRIGIDA)
+// ESTRUTURA
 // ======================
 estrutura = {
     atual: 100,
