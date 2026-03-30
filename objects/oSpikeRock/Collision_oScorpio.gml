@@ -36,3 +36,5 @@ if (other.tempo_dano <= 0) {
     other.hsp = dir * forca;
     other.vsp = -4;
 }
+
+other.knockback_timer = 10; // duração do empurrão

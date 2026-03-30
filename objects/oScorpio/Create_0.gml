@@ -61,3 +61,4 @@ vsp = 0; // velocidade vertical
 
 tempo_dano = 0;
 forca_knockback = 20;
+knockback_timer = 0;

@@ -100,30 +100,56 @@ if (!transformando)
 
 
 // =======================
-// 🚶 MOVIMENTO HORIZONTAL (COM KNOCKBACK)
+// 🚶 MOVIMENTO HORIZONTAL (SEM TRAVAR + CORREÇÃO DE QUINA)
 // =======================
 
-// 🔥 SOMA o knockback com o input
-var h_total = mov * spd + hsp;
+var h_total;
 
-if (!place_meeting(x + h_total, y, oAreia) && 
-    !place_meeting(x + h_total, y, oRocks1)) {
-    
-    x += h_total;
-    
+// prioridade do knockback
+if (knockback_timer > 0) {
+    h_total = hsp;
+    knockback_timer--;
 } else {
-    while (!place_meeting(x + sign(h_total), y, oAreia) && 
-           !place_meeting(x + sign(h_total), y, oRocks1)) {
-        x += sign(h_total);
+    h_total = mov * spd + hsp;
+}
+
+// 🔥 movimento pixel a pixel
+var passo = sign(h_total);
+var restante = abs(h_total);
+
+while (restante > 0) {
+
+    // ==========================
+    // ✅ movimento normal
+    // ==========================
+    if (!place_meeting(x + passo, y, oAreia) && 
+        !place_meeting(x + passo, y, oRocks1)) {
+        
+        x += passo;
+
+    } 
+    // ==========================
+    // 🔥 CORREÇÃO DE QUINA (STEP UP)
+    // ==========================
+    else if (!place_meeting(x + passo, y - 1, oAreia) && 
+             !place_meeting(x + passo, y - 1, oRocks1)) {
+        
+        x += passo;
+        y -= 1;
     }
+    else {
+        // bateu na parede → para movimento
+        hsp = 0;
+        break;
+    }
+
+    restante--;
 }
 
 // direção do sprite
-if (mov != 0) {
+if (mov != 0 && knockback_timer <= 0) {
     image_xscale = sign(mov);
 }
-
-
 // =======================
 // 🌍 GRAVIDADE
 // =======================
