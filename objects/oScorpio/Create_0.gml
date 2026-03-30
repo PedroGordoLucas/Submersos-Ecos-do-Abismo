@@ -18,7 +18,7 @@ transformando = false;
 // ======================
 energia = 100;
 energia_max = 100;
-energia_decay = 0.4;
+energia_decay = 0.1;
 
 // ======================
 // DASH
@@ -51,3 +51,13 @@ estrutura = {
         return atual <= 0;
     }
 };
+
+//tempo de dano
+tempo_dano = 0;
+
+//knockback de dano
+hsp = 0; // velocidade horizontal
+vsp = 0; // velocidade vertical
+
+tempo_dano = 0;
+forca_knockback = 20;

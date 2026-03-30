@@ -1,10 +1,18 @@
 // =======================
-// 🎮 MOVIMENTO (DEFINIDO ANTES)
+// ⏱️ TEMPO DE DANO (PRIMEIRO)
+// =======================
+if (tempo_dano > 0) {
+    tempo_dano--;
+}
+
+
+// =======================
+// 🎮 MOVIMENTO (INPUT)
 // =======================
 
 var mov = 0;
 
-if (!transformando)
+if (!transformando && tempo_dano <= 0) // 🔥 BLOQUEIA CONTROLE NO DANO
 {
     if (keyboard_check(ord("D"))) mov = 1;
     if (keyboard_check(ord("A"))) mov = -1;
@@ -12,12 +20,11 @@ if (!transformando)
 
 
 // =======================
-// 🔄 TRANSFORMAÇÃO (C + CONDIÇÃO DE PARADA)
+// 🔄 TRANSFORMAÇÃO
 // =======================
 
 if (keyboard_check_pressed(ord("C")))
 {
-    // TRANSFORMAR EM CARRO
     if (estado == ESTADO_NORMAL)
     {
         estado = ESTADO_TRANSFORMANDO;
@@ -27,8 +34,6 @@ if (keyboard_check_pressed(ord("C")))
         image_index = 0;
         image_speed = 1;
     }
-
-    // VOLTAR AO NORMAL (SÓ PARADO)
     else if (estado == ESTADO_VEICULO && mov == 0)
     {
         estado = ESTADO_TRANSFORMANDO;
@@ -40,21 +45,17 @@ if (keyboard_check_pressed(ord("C")))
     }
 }
 
-
-// Durante transformação
 if (estado == ESTADO_TRANSFORMANDO)
 {
     rodando = false;
     mov = 0;
 
-    // terminou indo pro carro
     if (image_speed > 0 && image_index >= image_number - 1)
     {
         estado = ESTADO_VEICULO;
         transformando = false;
     }
 
-    // terminou voltando
     if (image_speed < 0 && image_index <= 0)
     {
         estado = ESTADO_NORMAL;
@@ -73,16 +74,9 @@ if (!transformando)
 {
     if (estado == ESTADO_VEICULO)
     {
-        if (!no_chao) {
-            sprite_index = sScorpio_Pulando;
-        }
-        else if (mov != 0) {
-            // 🔥 AGORA SEMPRE RODA AO ANDAR
-            sprite_index = sScorpio_Rodando;
-        }
-        else {
-            sprite_index = sScorpio_Parado;
-        }
+        if (!no_chao) sprite_index = sScorpio_Pulando;
+        else if (mov != 0) sprite_index = sScorpio_Rodando;
+        else sprite_index = sScorpio_Parado;
 
         image_speed = 1;
     }
@@ -106,21 +100,25 @@ if (!transformando)
 
 
 // =======================
-// 🚶 MOVIMENTO HORIZONTAL
+// 🚶 MOVIMENTO HORIZONTAL (COM KNOCKBACK)
 // =======================
 
-if (!place_meeting(x + mov * spd, y, oAreia) && 
-    !place_meeting(x + mov * spd, y, oRocks1)) {
+// 🔥 SOMA o knockback com o input
+var h_total = mov * spd + hsp;
+
+if (!place_meeting(x + h_total, y, oAreia) && 
+    !place_meeting(x + h_total, y, oRocks1)) {
     
-    x += mov * spd;
+    x += h_total;
     
 } else {
-    while (!place_meeting(x + sign(mov), y, oAreia) && 
-           !place_meeting(x + sign(mov), y, oRocks1)) {
-        x += sign(mov);
+    while (!place_meeting(x + sign(h_total), y, oAreia) && 
+           !place_meeting(x + sign(h_total), y, oRocks1)) {
+        x += sign(h_total);
     }
 }
 
+// direção do sprite
 if (mov != 0) {
     image_xscale = sign(mov);
 }
@@ -138,7 +136,7 @@ vsp = clamp(vsp, -100, 10);
 // 🦘 PULO
 // =======================
 
-if (no_chao && !transformando) {
+if (no_chao && !transformando && tempo_dano <= 0) {
     if (keyboard_check_pressed(ord("W"))) {
         vsp = jump_force;
     }
@@ -161,6 +159,13 @@ if (place_meeting(x, y + vsp, oAreia) ||
 else {
     y += vsp;
 }
+
+
+// =======================
+// 💥 ATRITO DO KNOCKBACK
+// =======================
+
+hsp *= 0.85; // desacelera empurrão
 
 
 // =======================
@@ -187,12 +192,7 @@ energia = clamp(energia, 0, energia_max);
 // ⚡ VELOCIDADE
 // =======================
 
-if (energia <= 0) {
-    spd = 2;
-}
-else {
-    spd = 6;
-}
+spd = (energia <= 0) ? 2 : 6;
 
 
 // =======================
@@ -211,9 +211,9 @@ item = instance_place(x, y, oBanana);
 if (item != noone) instance_destroy(item);
 
 
-// ==================
+// =======================
 // 💀 MORTE
-// ==================
+// =======================
 
 if (estrutura.esta_morto()) {
     show_message("Você morreu!");
