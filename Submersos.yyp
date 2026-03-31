@@ -19,7 +19,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.4.221",
+    "IDEVersion":"2024.14.4.222",
   },
   "name":"Submersos",
   "resources":[
@@ -45,6 +45,7 @@
     {"id":{"name":"sBateria","path":"sprites/sBateria/sBateria.yy",},},
     {"id":{"name":"sFloor","path":"sprites/sFloor/sFloor.yy",},},
     {"id":{"name":"sLatinha","path":"sprites/sLatinha/sLatinha.yy",},},
+    {"id":{"name":"Sprite19","path":"sprites/Sprite19/Sprite19.yy",},},
     {"id":{"name":"sRocks1","path":"sprites/sRocks1/sRocks1.yy",},},
     {"id":{"name":"sRocks2","path":"sprites/sRocks2/sRocks2.yy",},},
     {"id":{"name":"sRocks3","path":"sprites/sRocks3/sRocks3.yy",},},

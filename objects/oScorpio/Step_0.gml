@@ -10,9 +10,9 @@ if (tempo_dano > 0) {
 // 🎮 MOVIMENTO (INPUT)
 // =======================
 
-var mov = 0;
+mov = 0;
 
-if (!transformando && tempo_dano <= 0) // 🔥 BLOQUEIA CONTROLE NO DANO
+if (estado != ESTADO_TRANSFORMANDO && tempo_dano <= 0)
 {
     if (keyboard_check(ord("D"))) mov = 1;
     if (keyboard_check(ord("A"))) mov = -1;
@@ -28,16 +28,14 @@ if (keyboard_check_pressed(ord("C")))
     if (estado == ESTADO_NORMAL)
     {
         estado = ESTADO_TRANSFORMANDO;
-        transformando = true;
 
         sprite_index = sScorpio_Transformacao_Veiculo;
         image_index = 0;
         image_speed = 1;
     }
-    else if (estado == ESTADO_VEICULO && mov == 0)
+    else if (estado == ESTADO_VEICULO && abs(hsp) < 0.1)
     {
         estado = ESTADO_TRANSFORMANDO;
-        transformando = true;
 
         sprite_index = sScorpio_Transformacao_Veiculo;
         image_index = image_number - 1;
@@ -45,22 +43,27 @@ if (keyboard_check_pressed(ord("C")))
     }
 }
 
+
+// =======================
+// 🔒 TRANSFORMAÇÃO (UNIFICADO)
+// =======================
+
 if (estado == ESTADO_TRANSFORMANDO)
 {
     rodando = false;
     mov = 0;
 
-    if (image_speed > 0 && image_index >= image_number - 1)
+    if (image_speed > 0 && image_index >= image_number - 1 - 0.1)
     {
         estado = ESTADO_VEICULO;
-        transformando = false;
     }
 
-    if (image_speed < 0 && image_index <= 0)
+    if (image_speed < 0 && image_index <= 0.1)
     {
         estado = ESTADO_NORMAL;
-        transformando = false;
     }
+
+    exit; // 🔥 trava TODO resto do Step
 }
 
 
@@ -70,7 +73,7 @@ if (estado == ESTADO_TRANSFORMANDO)
 
 var no_chao = place_meeting(x, y + 2, oAreia) || place_meeting(x, y + 2, oRocks1);
 
-if (!transformando)
+if (estado != ESTADO_TRANSFORMANDO)
 {
     if (estado == ESTADO_VEICULO)
     {
@@ -98,39 +101,44 @@ if (!transformando)
     }
 }
 
+// =======================
+// ⚡ VELOCIDADE (CORRIGIDO)
+// =======================
+
+if (estado == ESTADO_VEICULO)
+{
+    spd = (energia <= 0) ? 4 : 10;
+}
+else
+{
+    spd = (energia <= 0) ? 2 : 6;
+}
+
 
 // =======================
-// 🚶 MOVIMENTO HORIZONTAL (SEM TRAVAR + CORREÇÃO DE QUINA)
+// 🚶 MOVIMENTO HORIZONTAL
 // =======================
 
 var h_total;
 
-// prioridade do knockback
 if (knockback_timer > 0) {
     h_total = hsp;
     knockback_timer--;
 } else {
-    h_total = mov * spd + hsp;
+    h_total = mov * spd;
 }
 
-// 🔥 movimento pixel a pixel
 var passo = sign(h_total);
 var restante = abs(h_total);
 
 while (restante > 0) {
 
-    // ==========================
-    // ✅ movimento normal
-    // ==========================
     if (!place_meeting(x + passo, y, oAreia) && 
         !place_meeting(x + passo, y, oRocks1)) {
         
         x += passo;
 
     } 
-    // ==========================
-    // 🔥 CORREÇÃO DE QUINA (STEP UP)
-    // ==========================
     else if (!place_meeting(x + passo, y - 1, oAreia) && 
              !place_meeting(x + passo, y - 1, oRocks1)) {
         
@@ -138,7 +146,6 @@ while (restante > 0) {
         y -= 1;
     }
     else {
-        // bateu na parede → para movimento
         hsp = 0;
         break;
     }
@@ -146,10 +153,11 @@ while (restante > 0) {
     restante--;
 }
 
-// direção do sprite
 if (mov != 0 && knockback_timer <= 0) {
     image_xscale = sign(mov);
 }
+
+
 // =======================
 // 🌍 GRAVIDADE
 // =======================
@@ -162,7 +170,7 @@ vsp = clamp(vsp, -100, 10);
 // 🦘 PULO
 // =======================
 
-if (no_chao && !transformando && tempo_dano <= 0) {
+if (no_chao && estado != ESTADO_TRANSFORMANDO && tempo_dano <= 0) {
     if (keyboard_check_pressed(ord("W"))) {
         vsp = jump_force;
     }
@@ -191,7 +199,7 @@ else {
 // 💥 ATRITO DO KNOCKBACK
 // =======================
 
-hsp *= 0.85; // desacelera empurrão
+hsp *= 0.85;
 
 
 // =======================
@@ -212,13 +220,6 @@ if (!pegou_bateria && mov != 0) {
 }
 
 energia = clamp(energia, 0, energia_max);
-
-
-// =======================
-// ⚡ VELOCIDADE
-// =======================
-
-spd = (energia <= 0) ? 2 : 6;
 
 
 // =======================
