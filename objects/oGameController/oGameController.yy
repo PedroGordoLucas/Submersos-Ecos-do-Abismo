@@ -1,18 +1,17 @@
 {
   "$GMObject":"",
-  "%Name":"oBanana",
-  "eventList":[],
+  "%Name":"oGameController",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"oBanana",
+  "name":"oGameController",
   "overriddenProperties":[],
   "parent":{
-    "name":"oLixos",
-    "path":"folders/oLixos.yy",
+    "name":"Submersos",
+    "path":"Submersos.yyp",
   },
-  "parentObjectId":{
-    "name":"oSacodeLixo",
-    "path":"objects/oSacodeLixo/oSacodeLixo.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -30,10 +29,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"sbanana",
-    "path":"sprites/sbanana/sbanana.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

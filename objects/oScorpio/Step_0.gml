@@ -226,17 +226,20 @@ energia = clamp(energia, 0, energia_max);
 // 🗑️ ITENS
 // =======================
 
-var item;
-
-item = instance_place(x, y, oLatinha);
-if (item != noone) instance_destroy(item);
-
 item = instance_place(x, y, oSacodeLixo);
-if (item != noone) instance_destroy(item);
 
-item = instance_place(x, y, oBanana);
-if (item != noone) instance_destroy(item);
+if (item != noone) {
 
+    if (!variable_global_exists("lixo_coletado")) {
+        global.lixo_coletado = 0;
+    }
+
+    global.lixo_coletado += 1;
+
+    show_debug_message("Lixo coletado: " + string(global.lixo_coletado));
+
+    instance_destroy(item);
+}
 
 // =======================
 // 💀 MORTE

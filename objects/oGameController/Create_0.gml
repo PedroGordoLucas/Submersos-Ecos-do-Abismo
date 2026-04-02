@@ -1,0 +1,1 @@
+global.lixo_coletado = 0;

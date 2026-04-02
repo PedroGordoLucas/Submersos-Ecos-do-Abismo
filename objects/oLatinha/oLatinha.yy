@@ -6,10 +6,13 @@
   "name":"oLatinha",
   "overriddenProperties":[],
   "parent":{
-    "name":"Submersos",
-    "path":"Submersos.yyp",
+    "name":"oLixos",
+    "path":"folders/oLixos.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"oSacodeLixo",
+    "path":"objects/oSacodeLixo/oSacodeLixo.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
