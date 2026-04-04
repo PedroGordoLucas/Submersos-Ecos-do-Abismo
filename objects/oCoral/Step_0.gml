@@ -1,0 +1,1 @@
+image_blend = cor_atual;

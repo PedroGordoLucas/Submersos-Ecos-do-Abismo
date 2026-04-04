@@ -64,3 +64,5 @@ forca_knockback = 20;
 knockback_timer = 0;
 
 mask_index = sScorpio_Parado;
+
+ferramenta_ativa = false;

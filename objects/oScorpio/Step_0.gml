@@ -9,7 +9,6 @@ if (tempo_dano > 0) {
 // =======================
 // 🎮 MOVIMENTO (INPUT)
 // =======================
-
 mov = 0;
 
 if (estado != ESTADO_TRANSFORMANDO && tempo_dano <= 0)
@@ -20,9 +19,41 @@ if (estado != ESTADO_TRANSFORMANDO && tempo_dano <= 0)
 
 
 // =======================
+// 🔧 FERRAMENTA (TOGGLE)
+// =======================
+if (keyboard_check_pressed(ord("R"))) {
+    ferramenta_ativa = !ferramenta_ativa;
+}
+
+
+// =======================
+// 🤝 INTERAÇÃO COM CORAL
+// =======================
+if (estado == ESTADO_NORMAL && ferramenta_ativa && tempo_dano <= 0)
+{
+    if (keyboard_check_pressed(ord("E")))
+    {
+        var alcance = 80;
+
+        var coral = collision_circle(x, y, alcance, oCoral, false, true);
+
+        if (coral != noone)
+        {
+            with (coral)
+            {
+                if (cor_atual == c_white)
+                    cor_atual = c_blue;
+                else if (cor_atual == c_blue)
+                    cor_atual = c_green;
+                else
+                    cor_atual = c_white;
+            }
+        }
+    }
+}
+// =======================
 // 🔄 TRANSFORMAÇÃO
 // =======================
-
 if (keyboard_check_pressed(ord("C")))
 {
     if (estado == ESTADO_NORMAL)
@@ -45,9 +76,8 @@ if (keyboard_check_pressed(ord("C")))
 
 
 // =======================
-// 🔒 TRANSFORMAÇÃO (UNIFICADO)
+// 🔒 TRANSFORMAÇÃO (TRAVA)
 // =======================
-
 if (estado == ESTADO_TRANSFORMANDO)
 {
     rodando = false;
@@ -63,48 +93,76 @@ if (estado == ESTADO_TRANSFORMANDO)
         estado = ESTADO_NORMAL;
     }
 
-    exit; // 🔥 trava TODO resto do Step
+    exit;
 }
 
 
 // =======================
 // 🎬 SPRITES
 // =======================
-
-var no_chao = place_meeting(x, y + 2, oAreia) || place_meeting(x, y + 2, oRocks1);
+var no_chao = place_meeting(x, y + 1, oAreia) || place_meeting(x, y + 1, oRocks1);
 
 if (estado != ESTADO_TRANSFORMANDO)
 {
-    if (estado == ESTADO_VEICULO)
+    if (ferramenta_ativa)
     {
-        if (!no_chao) sprite_index = sScorpio_Pulando;
-        else if (mov != 0) sprite_index = sScorpio_Rodando;
-        else sprite_index = sScorpio_Parado;
-
-        image_speed = 1;
-    }
-    else
-    {
-        if (!no_chao) {
-            sprite_index = sScorpio_Pulando;
+        if (!no_chao)
+        {
+            sprite_index = sScorpio_Pulando_Injecao;
             image_speed = 1;
         }
-        else if (mov != 0) {
-            sprite_index = sScorpio_Caminhando;
+        else if (mov != 0)
+        {
+            sprite_index = sScorpio_Caminhando_Injecao;
             image_speed = 1;
         }
-        else {
-            sprite_index = sScorpio_Parado;
+        else
+        {
+            sprite_index = sScorpio_Parado_Injecao;
             image_speed = 0;
             image_index = 0;
         }
     }
+    else
+    {
+        if (estado == ESTADO_VEICULO)
+        {
+            if (!no_chao) {
+                sprite_index = sScorpio_Pulando;
+                image_speed = 1;
+            }
+            else if (mov != 0) {
+                sprite_index = sScorpio_Rodando;
+                image_speed = 1;
+            }
+            else {
+                sprite_index = sScorpio_Parado;
+                image_speed = 1;
+            }
+        }
+        else
+        {
+            if (!no_chao) {
+                sprite_index = sScorpio_Pulando;
+                image_speed = 1;
+            }
+            else if (mov != 0) {
+                sprite_index = sScorpio_Caminhando;
+                image_speed = 1;
+            }
+            else {
+                sprite_index = sScorpio_Parado;
+                image_speed = 0;
+                image_index = 0;
+            }
+        }
+    }
 }
 
-// =======================
-// ⚡ VELOCIDADE (CORRIGIDO)
-// =======================
 
+// =======================
+// ⚡ VELOCIDADE
+// =======================
 if (estado == ESTADO_VEICULO)
 {
     spd = (energia <= 0) ? 4 : 10;
@@ -118,7 +176,6 @@ else
 // =======================
 // 🚶 MOVIMENTO HORIZONTAL
 // =======================
-
 var h_total;
 
 if (knockback_timer > 0) {
@@ -161,7 +218,6 @@ if (mov != 0 && knockback_timer <= 0) {
 // =======================
 // 🌍 GRAVIDADE
 // =======================
-
 vsp += grav;
 vsp = clamp(vsp, -100, 10);
 
@@ -169,7 +225,6 @@ vsp = clamp(vsp, -100, 10);
 // =======================
 // 🦘 PULO
 // =======================
-
 if (no_chao && estado != ESTADO_TRANSFORMANDO && tempo_dano <= 0) {
     if (keyboard_check_pressed(ord("W"))) {
         vsp = jump_force;
@@ -180,32 +235,36 @@ if (no_chao && estado != ESTADO_TRANSFORMANDO && tempo_dano <= 0) {
 // =======================
 // ⬇️ COLISÃO VERTICAL
 // =======================
+var v_total = vsp;
+var passo_v = sign(v_total);
+var restante_v = abs(v_total);
 
-if (place_meeting(x, y + vsp, oAreia) || 
-    place_meeting(x, y + vsp, oRocks1)) {
-
-    while (!place_meeting(x, y + sign(vsp), oAreia) && 
-           !place_meeting(x, y + sign(vsp), oRocks1)) {
-        y += sign(vsp);
+while (restante_v > 0)
+{
+    if (!place_meeting(x, y + passo_v, oAreia) && 
+        !place_meeting(x, y + passo_v, oRocks1))
+    {
+        y += passo_v;
     }
-    vsp = 0;
-}
-else {
-    y += vsp;
+    else
+    {
+        vsp = 0;
+        break;
+    }
+
+    restante_v--;
 }
 
 
 // =======================
 // 💥 ATRITO DO KNOCKBACK
 // =======================
-
 hsp *= 0.85;
 
 
 // =======================
 // 🔋 ENERGIA
 // =======================
-
 var pegou_bateria = false;
 var bat = instance_place(x, y, oBateria);
 
@@ -225,7 +284,6 @@ energia = clamp(energia, 0, energia_max);
 // =======================
 // 🗑️ ITENS
 // =======================
-
 item = instance_place(x, y, oSacodeLixo);
 
 if (item != noone) {
@@ -241,10 +299,10 @@ if (item != noone) {
     instance_destroy(item);
 }
 
+
 // =======================
 // 💀 MORTE
 // =======================
-
 if (estrutura.esta_morto()) {
     show_message("Você morreu!");
     instance_destroy();

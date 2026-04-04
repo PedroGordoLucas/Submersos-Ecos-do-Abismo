@@ -1,0 +1,1 @@
+cor_atual = c_white;
