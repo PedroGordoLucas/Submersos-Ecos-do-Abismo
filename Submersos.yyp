@@ -64,6 +64,7 @@
     {"id":{"name":"sSensor","path":"sprites/sSensor/sSensor.yy",},},
     {"id":{"name":"sSpikerock","path":"sprites/sSpikerock/sSpikerock.yy",},},
     {"id":{"name":"sSpikerock2","path":"sprites/sSpikerock2/sSpikerock2.yy",},},
+    {"id":{"name":"sSpr_vida","path":"sprites/sSpr_vida/sSpr_vida.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
