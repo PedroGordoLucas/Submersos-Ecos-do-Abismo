@@ -44,12 +44,3 @@ if (instance_exists(player)) {
 
     pos_y += h + espacamento;
 }
-var padding = 4;
-
-draw_rectangle(
-    pos_x + padding,
-    pos_y + padding,
-    pos_x + padding + (w - padding*2) * perc,
-    pos_y + h - padding,
-    false
-);
