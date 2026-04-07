@@ -45,7 +45,7 @@
   "origin":4,
   "parent":{
     "name":"sScorpio",
-    "path":"folders/sScorpio.yy",
+    "path":"folders/SPRITES/sScorpio.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

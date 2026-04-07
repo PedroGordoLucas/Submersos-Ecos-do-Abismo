@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"sblocos",
-    "path":"folders/sblocos.yy",
+    "path":"folders/SPRITES/sblocos.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
