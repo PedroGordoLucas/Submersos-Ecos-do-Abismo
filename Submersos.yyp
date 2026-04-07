@@ -22,7 +22,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.4.222",
+    "IDEVersion":"2024.1400.4.1030",
   },
   "name":"Submersos",
   "resources":[
@@ -46,7 +46,8 @@
     {"id":{"name":"oSpikeRock","path":"objects/oSpikeRock/oSpikeRock.yy",},},
     {"id":{"name":"oSpikeRock2","path":"objects/oSpikeRock2/oSpikeRock2.yy",},},
     {"id":{"name":"oTubarao","path":"objects/oTubarao/oTubarao.yy",},},
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"Cenario_01","path":"rooms/Cenario_01/Cenario_01.yy",},},
+    {"id":{"name":"Sala_de_Testes_Debugs","path":"rooms/Sala_de_Testes_Debugs/Sala_de_Testes_Debugs.yy",},},
     {"id":{"name":"sAreia","path":"sprites/sAreia/sAreia.yy",},},
     {"id":{"name":"sAreia2","path":"sprites/sAreia2/sAreia2.yy",},},
     {"id":{"name":"sArraia","path":"sprites/sArraia/sArraia.yy",},},
@@ -85,7 +86,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"Sala_de_Testes_Debugs","path":"rooms/Sala_de_Testes_Debugs/Sala_de_Testes_Debugs.yy",},},
+    {"roomId":{"name":"Cenario_01","path":"rooms/Cenario_01/Cenario_01.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[
