@@ -1,4 +1,15 @@
 // =======================
+// 🛠️ GARANTIR VARIÁVEIS
+// =======================
+if (!variable_instance_exists(id, "energia_draw")) {
+    energia_draw = energia;
+}
+
+if (!variable_instance_exists(id, "estrutura_draw")) {
+    estrutura_draw = estrutura.atual;
+}
+
+// =======================
 // ⏱️ TEMPO DE DANO (PRIMEIRO)
 // =======================
 if (tempo_dano > 0) {
@@ -307,3 +318,9 @@ if (estrutura.esta_morto()) {
     show_message("Você morreu!");
     instance_destroy();
 }
+
+// =======================
+// 🎨 SUAVIZAÇÃO HUD
+// =======================
+energia_draw = lerp(energia_draw, energia, 0.1);
+estrutura_draw = lerp(estrutura_draw, estrutura.atual, 0.1);
