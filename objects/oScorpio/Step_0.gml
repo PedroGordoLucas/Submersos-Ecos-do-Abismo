@@ -30,22 +30,23 @@ if (estado != ESTADO_TRANSFORMANDO && tempo_dano <= 0)
 
 
 // =======================
-// 🔧 FERRAMENTA (TOGGLE)
+// 🔧 FERRAMENTA (CICLO: OFF -> INJEÇÃO -> RUÍDO -> SONAR)
 // =======================
 if (keyboard_check_pressed(ord("R"))) {
-    ferramenta_ativa = !ferramenta_ativa;
+    ferramenta_ativa += 1;
+    // Agora o limite é 3 (Sonar)
+    if (ferramenta_ativa > 3) ferramenta_ativa = 0;
 }
 
 
 // =======================
-// 🤝 INTERAÇÃO COM CORAL
+// 🤝 INTERAÇÃO COM CORAL (APENAS COM INJEÇÃO ATIVA)
 // =======================
-if (estado == ESTADO_NORMAL && ferramenta_ativa && tempo_dano <= 0)
+if (estado == ESTADO_NORMAL && ferramenta_ativa == 1 && tempo_dano <= 0)
 {
     if (keyboard_check_pressed(ord("E")))
     {
         var alcance = 80;
-
         var coral = collision_circle(x, y, alcance, oCoral, false, true);
 
         if (coral != noone)
@@ -62,6 +63,7 @@ if (estado == ESTADO_NORMAL && ferramenta_ativa && tempo_dano <= 0)
         }
     }
 }
+
 // =======================
 // 🔄 TRANSFORMAÇÃO
 // =======================
@@ -70,7 +72,6 @@ if (keyboard_check_pressed(ord("C")))
     if (estado == ESTADO_NORMAL)
     {
         estado = ESTADO_TRANSFORMANDO;
-
         sprite_index = sScorpio_Transformacao_Veiculo;
         image_index = 0;
         image_speed = 1;
@@ -78,7 +79,6 @@ if (keyboard_check_pressed(ord("C")))
     else if (estado == ESTADO_VEICULO && abs(hsp) < 0.1)
     {
         estado = ESTADO_TRANSFORMANDO;
-
         sprite_index = sScorpio_Transformacao_Veiculo;
         image_index = image_number - 1;
         image_speed = -1;
@@ -109,59 +109,72 @@ if (estado == ESTADO_TRANSFORMANDO)
 
 
 // =======================
-// 🎬 SPRITES
+// 🎬 SPRITES (LÓGICA DE FERRAMENTAS)
 // =======================
 var no_chao = place_meeting(x, y + 1, oAreia) || place_meeting(x, y + 1, oRocks1);
 
 if (estado != ESTADO_TRANSFORMANDO)
 {
-    if (ferramenta_ativa)
+    if (ferramenta_ativa == 1) // --- MODO INJEÇÃO ---
     {
-        if (!no_chao)
-        {
+        if (!no_chao) {
             sprite_index = sScorpio_Pulando_Injecao;
             image_speed = 1;
-        }
-        else if (mov != 0)
-        {
+        } else if (mov != 0) {
             sprite_index = sScorpio_Caminhando_Injecao;
             image_speed = 1;
-        }
-        else
-        {
+        } else {
             sprite_index = sScorpio_Parado_Injecao;
             image_speed = 0;
             image_index = 0;
         }
     }
-    else
+    else if (ferramenta_ativa == 2) // --- MODO RUÍDO ---
+    {
+        if (!no_chao) {
+            sprite_index = sScorpio_Pulando_Ruido;
+            image_speed = 1;
+        } else if (mov != 0) {
+            sprite_index = sScorpio_Caminhando_Ruido;
+            image_speed = 1;
+        } else {
+            sprite_index = sScorpio_Parado_Ruido;
+            image_speed = 0;
+            image_index = 0;
+        }
+    }
+    else if (ferramenta_ativa == 3) // --- MODO SONAR ---
+    {
+        if (!no_chao) {
+            sprite_index = sScorpio_Pulando_Sonar;
+            image_speed = 1;
+        } else if (mov != 0) {
+            sprite_index = sScorpio_Caminhando_Sonar;
+            image_speed = 1;
+        } else {
+            sprite_index = sScorpio_Parado_Sonar;
+            image_speed = 0;
+            image_index = 0;
+        }
+    }
+    else // --- SEM FERRAMENTA (NORMAL OU VEÍCULO) ---
     {
         if (estado == ESTADO_VEICULO)
         {
-            if (!no_chao) {
-                sprite_index = sScorpio_Pulando;
-                image_speed = 1;
-            }
-            else if (mov != 0) {
-                sprite_index = sScorpio_Rodando;
-                image_speed = 1;
-            }
-            else {
-                sprite_index = sScorpio_Parado;
-                image_speed = 1;
-            }
+            if (!no_chao) sprite_index = sScorpio_Pulando;
+            else if (mov != 0) sprite_index = sScorpio_Rodando;
+            else sprite_index = sScorpio_Parado;
+            image_speed = 1;
         }
         else
         {
             if (!no_chao) {
                 sprite_index = sScorpio_Pulando;
                 image_speed = 1;
-            }
-            else if (mov != 0) {
+            } else if (mov != 0) {
                 sprite_index = sScorpio_Caminhando;
                 image_speed = 1;
-            }
-            else {
+            } else {
                 sprite_index = sScorpio_Parado;
                 image_speed = 0;
                 image_index = 0;
@@ -304,9 +317,7 @@ if (item != noone) {
     }
 
     global.lixo_coletado += 1;
-
     show_debug_message("Lixo coletado: " + string(global.lixo_coletado));
-
     instance_destroy(item);
 }
 
