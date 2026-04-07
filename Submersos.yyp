@@ -20,7 +20,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.4.222",
+    "IDEVersion":"2024.1400.4.1030",
   },
   "name":"Submersos",
   "resources":[
@@ -50,6 +50,7 @@
     {"id":{"name":"sCoral","path":"sprites/sCoral/sCoral.yy",},},
     {"id":{"name":"sFloor","path":"sprites/sFloor/sFloor.yy",},},
     {"id":{"name":"sLatinha","path":"sprites/sLatinha/sLatinha.yy",},},
+    {"id":{"name":"Sprite25","path":"sprites/Sprite25/Sprite25.yy",},},
     {"id":{"name":"sRocks1","path":"sprites/sRocks1/sRocks1.yy",},},
     {"id":{"name":"sRocks2","path":"sprites/sRocks2/sRocks2.yy",},},
     {"id":{"name":"sRocks3","path":"sprites/sRocks3/sRocks3.yy",},},
@@ -67,6 +68,7 @@
     {"id":{"name":"sSpikerock","path":"sprites/sSpikerock/sSpikerock.yy",},},
     {"id":{"name":"sSpikerock2","path":"sprites/sSpikerock2/sSpikerock2.yy",},},
     {"id":{"name":"sSpr_vida","path":"sprites/sSpr_vida/sSpr_vida.yy",},},
+    {"id":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
