@@ -46,6 +46,7 @@
     {"id":{"name":"oSpikeRock","path":"objects/oSpikeRock/oSpikeRock.yy",},},
     {"id":{"name":"oSpikeRock2","path":"objects/oSpikeRock2/oSpikeRock2.yy",},},
     {"id":{"name":"oTubarao","path":"objects/oTubarao/oTubarao.yy",},},
+    {"id":{"name":"jogo","path":"rooms/jogo/jogo.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"sAreia","path":"sprites/sAreia/sAreia.yy",},},
     {"id":{"name":"sAreia2","path":"sprites/sAreia2/sAreia2.yy",},},
@@ -86,6 +87,7 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"jogo","path":"rooms/jogo/jogo.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[
