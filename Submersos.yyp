@@ -22,7 +22,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.1400.4.1030",
+    "IDEVersion":"2024.14.4.222",
   },
   "name":"Submersos",
   "resources":[
@@ -39,6 +39,7 @@
     {"id":{"name":"oRocks1","path":"objects/oRocks1/oRocks1.yy",},},
     {"id":{"name":"oRocks2","path":"objects/oRocks2/oRocks2.yy",},},
     {"id":{"name":"oRocks3","path":"objects/oRocks3/oRocks3.yy",},},
+    {"id":{"name":"oRuidoPulso","path":"objects/oRuidoPulso/oRuidoPulso.yy",},},
     {"id":{"name":"oSacodeLixo","path":"objects/oSacodeLixo/oSacodeLixo.yy",},},
     {"id":{"name":"oScorpio","path":"objects/oScorpio/oScorpio.yy",},},
     {"id":{"name":"oSensor","path":"objects/oSensor/oSensor.yy",},},

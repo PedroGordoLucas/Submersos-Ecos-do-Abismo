@@ -9,6 +9,10 @@ if (!variable_instance_exists(id, "estrutura_draw")) {
     estrutura_draw = estrutura.atual;
 }
 
+if (!variable_instance_exists(id, "ruido_cooldown")) {
+    ruido_cooldown = 0;
+}
+
 // =======================
 // ⏱️ TEMPO DE DANO (PRIMEIRO)
 // =======================
@@ -34,7 +38,6 @@ if (estado != ESTADO_TRANSFORMANDO && tempo_dano <= 0)
 // =======================
 if (keyboard_check_pressed(ord("R"))) {
     ferramenta_ativa += 1;
-    // Agora o limite é 3 (Sonar)
     if (ferramenta_ativa > 3) ferramenta_ativa = 0;
 }
 
@@ -63,6 +66,21 @@ if (estado == ESTADO_NORMAL && ferramenta_ativa == 1 && tempo_dano <= 0)
         }
     }
 }
+
+// =======================
+// 🔊 FERRAMENTA DE RUÍDO
+// =======================
+if (ruido_cooldown > 0) {
+    ruido_cooldown--;
+}
+
+if (estado == ESTADO_NORMAL && ferramenta_ativa == 2 && tempo_dano <= 0) {
+    if (keyboard_check_pressed(ord("E")) && ruido_cooldown <= 0) {
+        instance_create_layer(x, y, "Instances", oRuidoPulso);
+        ruido_cooldown = 90; // 3 segundos a 30fps — ajuste à vontade
+    }
+}
+
 
 // =======================
 // 🔄 TRANSFORMAÇÃO
