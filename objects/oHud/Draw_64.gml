@@ -39,20 +39,16 @@ if (instance_exists(player)) {
         pos_y + h - padding,
         false
     );
-
     pos_y += h + espacamento;
-
     // ======================
     // ⚡ ENERGIA (SPRITE POR PORCENTAGEM)
     // ======================
     draw_set_color(c_white);
     draw_text(pos_x, pos_y, "ENERGIA");
     pos_y += 18;
-
     // Escolhe o sprite baseado na energia atual (com suavização)
     var perc_energia = player.energia_draw / player.energia_max;
     var spr_energia;
-
     if (perc_energia <= 0.0) {
         spr_energia = sEnergia0;
     } else if (perc_energia <= 0.2) {
@@ -66,7 +62,9 @@ if (instance_exists(player)) {
     } else {
         spr_energia = sEnergia100;
     }
-
+    // 🔳 FUNDO ESTÁTICO DA BARRA
+    draw_sprite(sFundodaBarraEnergia, 0, pos_x, pos_y);
+    // ⚡ SPRITE DE ENERGIA POR CIMA
     draw_sprite(spr_energia, 0, pos_x, pos_y);
     pos_y += sprite_get_height(spr_energia) + espacamento;
 }
