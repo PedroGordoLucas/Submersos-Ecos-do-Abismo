@@ -10,8 +10,8 @@
   "name":"oTubarao",
   "overriddenProperties":[],
   "parent":{
-    "name":"oNpcs",
-    "path":"folders/oNpcs.yy",
+    "name":"Submersos",
+    "path":"Submersos.yyp",
   },
   "parentObjectId":null,
   "persistent":false,
