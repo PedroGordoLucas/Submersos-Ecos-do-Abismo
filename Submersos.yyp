@@ -10,6 +10,7 @@
   },
   "defaultScriptType":1,
   "Folders":[
+    {"$GMFolder":"","%Name":"Sounds","folderPath":"folders/Sounds.yy","name":"Sounds","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"oLixos","folderPath":"folders/oLixos.yy","name":"oLixos","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"oNpcs","folderPath":"folders/oNpcs.yy","name":"oNpcs","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"rRooms","folderPath":"folders/rRooms.yy","name":"rRooms","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -59,6 +60,8 @@
     {"id":{"name":"rFase1","path":"rooms/rFase1/rFase1.yy",},},
     {"id":{"name":"rFase2","path":"rooms/rFase2/rFase2.yy",},},
     {"id":{"name":"rFase3","path":"rooms/rFase3/rFase3.yy",},},
+    {"id":{"name":"Main_theme","path":"sounds/Main_theme/Main_theme.yy",},},
+    {"id":{"name":"Sound2","path":"sounds/Sound2/Sound2.yy",},},
     {"id":{"name":"Injecao_3","path":"sprites/Injecao_3/Injecao_3.yy",},},
     {"id":{"name":"sAreia","path":"sprites/sAreia/sAreia.yy",},},
     {"id":{"name":"sAreia2","path":"sprites/sAreia2/sAreia2.yy",},},
