@@ -66,6 +66,7 @@
     {"id":{"name":"sbanana","path":"sprites/sbanana/sbanana.yy",},},
     {"id":{"name":"sBateria","path":"sprites/sBateria/sBateria.yy",},},
     {"id":{"name":"sCoral","path":"sprites/sCoral/sCoral.yy",},},
+    {"id":{"name":"sDataCenter","path":"sprites/sDataCenter/sDataCenter.yy",},},
     {"id":{"name":"sEnergia0","path":"sprites/sEnergia0/sEnergia0.yy",},},
     {"id":{"name":"sEnergia100","path":"sprites/sEnergia100/sEnergia100.yy",},},
     {"id":{"name":"sEnergia20","path":"sprites/sEnergia20/sEnergia20.yy",},},
