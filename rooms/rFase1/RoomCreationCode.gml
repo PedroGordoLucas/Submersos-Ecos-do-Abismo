@@ -1,1 +1,5 @@
+
+
+
+
 audio_play_sound(Main_theme,10,true);
