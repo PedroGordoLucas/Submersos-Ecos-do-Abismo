@@ -1,0 +1,1 @@
+room_goto(rFase1); // Vai para a próxima fase (ou use room_goto(NomeDaSuaRoom))
