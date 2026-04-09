@@ -38,8 +38,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"sScorpio",
-    "path":"folders/SPRITES/sScorpio.yy",
+    "name":"Caminhando",
+    "path":"folders/SPRITES/sScorpio/Caminhando.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

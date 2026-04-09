@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"sAnimais",
-    "path":"folders/SPRITES/sAnimais.yy",
+    "name":"sNpcs",
+    "path":"folders/SPRITES/sNpcs.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

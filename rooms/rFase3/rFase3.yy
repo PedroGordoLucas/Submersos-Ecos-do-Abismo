@@ -13,8 +13,8 @@
   ],
   "name":"rFase3",
   "parent":{
-    "name":"Submersos",
-    "path":"Submersos.yyp",
+    "name":"rRooms",
+    "path":"folders/rRooms.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

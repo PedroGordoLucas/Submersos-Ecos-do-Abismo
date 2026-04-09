@@ -10,8 +10,8 @@
   "name":"oSentinela",
   "overriddenProperties":[],
   "parent":{
-    "name":"Submersos",
-    "path":"Submersos.yyp",
+    "name":"oNpcs",
+    "path":"folders/oNpcs.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sSentinela",
-    "path":"sprites/sSentinela/sSentinela.yy",
+    "name":"sSentinela_Parado1",
+    "path":"sprites/sSentinela_Parado1/sSentinela_Parado1.yy",
   },
   "spriteMaskId":null,
   "visible":true,

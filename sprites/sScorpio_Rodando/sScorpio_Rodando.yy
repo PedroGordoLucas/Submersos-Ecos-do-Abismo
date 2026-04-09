@@ -56,8 +56,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"sScorpio",
-    "path":"folders/SPRITES/sScorpio.yy",
+    "name":"Veiculo",
+    "path":"folders/SPRITES/sScorpio/Veiculo.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

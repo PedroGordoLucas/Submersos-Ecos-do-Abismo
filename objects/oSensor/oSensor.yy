@@ -10,8 +10,8 @@
   "name":"oSensor",
   "overriddenProperties":[],
   "parent":{
-    "name":"Submersos",
-    "path":"Submersos.yyp",
+    "name":"oNpcs",
+    "path":"folders/oNpcs.yy",
   },
   "parentObjectId":null,
   "persistent":false,
