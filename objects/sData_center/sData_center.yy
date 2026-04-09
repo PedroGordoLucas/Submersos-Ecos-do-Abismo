@@ -1,13 +1,13 @@
 {
   "$GMObject":"",
-  "%Name":"Object22",
+  "%Name":"sData_center",
   "eventList":[],
   "managed":true,
-  "name":"Object22",
+  "name":"sData_center",
   "overriddenProperties":[],
   "parent":{
-    "name":"SPRITES",
-    "path":"folders/SPRITES.yy",
+    "name":"Submersos",
+    "path":"Submersos.yyp",
   },
   "parentObjectId":null,
   "persistent":false,
