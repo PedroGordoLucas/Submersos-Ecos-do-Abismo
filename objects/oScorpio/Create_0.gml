@@ -4,8 +4,8 @@
 spd = 4;
 vsp = 0;
 hsp = 0; // Velocidade horizontal para knockback
-grav = 0.5;
-jump_force = -10;
+grav = 0.4;
+jump_force = -12;
 
 // ======================
 // 🔄 SISTEMA DE ESTADOS

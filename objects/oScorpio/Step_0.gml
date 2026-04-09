@@ -77,7 +77,7 @@ if (ruido_cooldown > 0) {
 if (estado == ESTADO_NORMAL && ferramenta_ativa == 2 && tempo_dano <= 0) {
     if (keyboard_check_pressed(ord("E")) && ruido_cooldown <= 0) {
         instance_create_layer(x, y, "Instances", oRuidoPulso);
-        ruido_cooldown = 90; // 3 segundos a 30fps — ajuste à vontade
+        ruido_cooldown = 90;
     }
 }
 
@@ -129,11 +129,11 @@ if (estado == ESTADO_TRANSFORMANDO)
 // =======================
 // 🎬 SPRITES (LÓGICA DE FERRAMENTAS)
 // =======================
-var no_chao = place_meeting(x, y + 1, oAreia) || place_meeting(x, y + 1, oRocks1);
+var no_chao = place_meeting(x, y + 1, oAreia) || place_meeting(x, y + 1, oRocks1) || place_meeting(x, y + 1, oFloor);
 
 if (estado != ESTADO_TRANSFORMANDO)
 {
-    if (ferramenta_ativa == 1) // --- MODO INJEÇÃO ---
+    if (ferramenta_ativa == 1)
     {
         if (!no_chao) {
             sprite_index = sScorpio_Pulando_Injecao;
@@ -147,7 +147,7 @@ if (estado != ESTADO_TRANSFORMANDO)
             image_index = 0;
         }
     }
-    else if (ferramenta_ativa == 2) // --- MODO RUÍDO ---
+    else if (ferramenta_ativa == 2)
     {
         if (!no_chao) {
             sprite_index = sScorpio_Pulando_Ruido;
@@ -161,7 +161,7 @@ if (estado != ESTADO_TRANSFORMANDO)
             image_index = 0;
         }
     }
-    else if (ferramenta_ativa == 3) // --- MODO SONAR ---
+    else if (ferramenta_ativa == 3)
     {
         if (!no_chao) {
             sprite_index = sScorpio_Pulando_Sonar;
@@ -175,7 +175,7 @@ if (estado != ESTADO_TRANSFORMANDO)
             image_index = 0;
         }
     }
-    else // --- SEM FERRAMENTA (NORMAL OU VEÍCULO) ---
+    else
     {
         if (estado == ESTADO_VEICULO)
         {
@@ -233,13 +233,15 @@ var restante = abs(h_total);
 while (restante > 0) {
 
     if (!place_meeting(x + passo, y, oAreia) && 
-        !place_meeting(x + passo, y, oRocks1)) {
+        !place_meeting(x + passo, y, oRocks1) &&
+        !place_meeting(x + passo, y, oFloor)) {
         
         x += passo;
 
     } 
     else if (!place_meeting(x + passo, y - 1, oAreia) && 
-             !place_meeting(x + passo, y - 1, oRocks1)) {
+             !place_meeting(x + passo, y - 1, oRocks1) &&
+             !place_meeting(x + passo, y - 1, oFloor)) {
         
         x += passo;
         y -= 1;
@@ -277,27 +279,26 @@ if (no_chao && estado != ESTADO_TRANSFORMANDO && tempo_dano <= 0) {
 // =======================
 // ⬇️ COLISÃO VERTICAL
 // =======================
-var v_total = vsp;
-var passo_v = sign(v_total);
-var restante_v = abs(v_total);
-
-while (restante_v > 0)
-{
-    if (!place_meeting(x, y + passo_v, oAreia) && 
-        !place_meeting(x, y + passo_v, oRocks1))
-    {
+var passo_v = sign(vsp);
+var restante_v = abs(vsp);
+repeat (restante_v) {
+    if (!place_meeting(x, y + passo_v, oAreia) &&
+        !place_meeting(x, y + passo_v, oRocks1) &&
+        !place_meeting(x, y + passo_v, oFloor)) {
         y += passo_v;
-    }
-    else
-    {
+    } else {
+        // Se estava subindo, empurra 1px para baixo para não ficar grudado
+        if (passo_v < 0) {
+            while (place_meeting(x, y, oAreia) ||
+                   place_meeting(x, y, oRocks1) ||
+                   place_meeting(x, y, oFloor)) {
+                y += 1;
+            }
+        }
         vsp = 0;
         break;
     }
-
-    restante_v--;
 }
-
-
 // =======================
 // 💥 ATRITO DO KNOCKBACK
 // =======================
