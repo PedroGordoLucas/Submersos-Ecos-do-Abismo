@@ -12,7 +12,7 @@ O projeto alinha-se à **ODS 14: Vida na Água**, buscando conscientizar sobre a
 Atualmente, o projeto está em fase de prototipação (Sprint de Gameplay).
 1. **Clone o repositório:** `git clone https://github.com/PedroGordoLucas/Submersos-Ecos-do-Abismo.git`
 2. **Importação:** Abra o arquivo `Submersos.yyp` no GameMaker Studio 2 (Versão 2024.14 ou superior).
-3. **Download (Build):**
+3. **Download (Build):** https://drive.google.com/drive/folders/1UelLenr2Bhb4qHVQFD2y2V0B7xcZllFg
 
 ## 🛠️ Tecnologias Utilizadas
 * **Engine:** GameMaker Studio 2 (Linguagem GML).
